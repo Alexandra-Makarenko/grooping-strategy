@@ -1,37 +1,40 @@
-// Напиши скрипт который:
+// const myModal = document.getElementById('myModal')
+// const myInput = document.getElementById('myInput')
 
-// Посчитает и выведет в консоль количество категорий в ul#categories, то есть элементов li.item.
-// Для каждого элемента li.item в списке ul#categories, найдет и выведет в консоль текст заголовка элемента (тега <h2>) и количество элементов в категории (всех вложенных в него <li>).
-// В результате, в консоли будут выведены такие сообщения.
+// myModal.addEventListener('shown.bs.modal', () => {
+//   myInput.focus()
+// })
 
-// Number of categories: 3
+function printPermutations(array, k) {
+  var combinations = [];
+  var indices = [];
+  function next(index) {
+    if (index == k) {
+      var result = [];
+      for (var i = 0; i < k; i++) {
+        result[i] = array[indices[i]];
+      }
+      combinations.push(result);
+      return;
+    }
+    for (var i = 0; i < array.length; i++) {
+      if (alreadyInCombination(i, index))
+        continue;
+      indices[index] = i;
+      next(index + 1);
+    }
+  }
+  function alreadyInCombination(i, index) {
+      for (var j = 0; j < index; j++) {
+        if (indices[j] == i) {
+          return true;
+        }
+      }
+      return false;
+  }
+  next(0);
+  return combinations;
+}
 
-// Category: Animals
-// Elements: 4
 
-// Category: Products
-// Elements: 3
-
-// Category: Technologies
-// Elements: 5
- 
-
-
-const refs = {
-    menuItemsByTagName: document.querySelectorAll("li.item"),
-    categoryName: document.querySelectorAll('h2'),
-    categoryTypes: document.querySelectorAll('.item ul')
-
-};
-console.log(`Number of categories: ${refs.menuItemsByTagName.length}`);
-
-refs.menuItemsByTagName.forEach((item) => {
-    console.log(`Category: ${item.firstElementChild.textContent}`);
-   console.log(`Elements: ${item.querySelectorAll('.item li').length}`)
-
-    
-})
-
- 
-
-
+console.log(printPermutations([1, 2, 3, 4], 2));

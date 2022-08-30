@@ -29,3 +29,25 @@ img{
 li{
   list-style: none;
 }
+.col-md-10{
+  display: flex;
+  width: 100%;
+}
+.param-area{
+  display: flex;
+  justify-content: space-evenly;
+  outline: 1px solid red;
+}
+.param-box{
+  width: 40%;
+    outline: 1px solid green;
+}
+@media (min-width: 576px){
+.modal-dialog {
+    max-width: 60%;
+  }
+}
+.btn-generate{
+  width: 200px;
+  height: 60px;
+}

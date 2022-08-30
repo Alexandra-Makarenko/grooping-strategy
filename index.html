@@ -1,25 +1,697 @@
 <!DOCTYPE html>
-<html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Homework 6</title>
-    <link rel="stylesheet" href="css/common.css" />
-  
-  </head>
-  <body>
-    <ul>
-      <li><a href="task-01.html">Task 1</a></li>
-      <li><a href="task-02.html">Task 2</a></li>
-      <li><a href="task-03.html">Task 3</a></li>
-      <li><a href="task-04.html">Task 4</a></li>
-      <li><a href="task-05.html">Task 5</a></li>
-      <li><a href="task-06.html">Task 6</a></li>
-      <li><a href="task-07.html">Task 7</a></li>
-      <li><a href="task-08.html">Task 8</a></li>
-      <li><a href="task-09.html">Task 9</a></li>
-      <li><a href="task-10.html">Task 10 (optional)</a></li>
-    </ul>
-  </body>
+<html lang="ru-RU">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="/assets/a7468e58/images/favicon.ico" type="image/x-icon">
+  <meta name="csrf-param" content="_csrf-backend">
+  <meta name="csrf-token"
+    content="iISHIlTV65FkmG506hdFunFf31gikdSeIrDMmtEIDSnd3sloJKOPwzb2KTulLwn5JQDoFnHO4adE6bzO5UE8Zg==">
+  <title>Стратегия группировки</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <link href="/css/common.css" rel="stylesheet">
+
+</head>
+
+<body class="hold-transition fixed sidebar-mini skin-blue  sidebar-collapse">
+  <div id="spl-spinner-overlay"></div>
+  <div class="wrapper">
+
+<!-- 
+    <header class="main-header">
+
+      <a class="logo hidden-xs" href="/"><span class="logo-mini fa fa-usb" style="padding: 15px;"></span><span
+          class="logo-lg">Splitter</span></a>
+      <nav class="navbar navbar-static-top">
+
+        <a href="#" class="sidebar-toggle" data-toggle="spl-push-menu">
+          <span class="sr-only">Toggle navigation</span>
+        </a>
+
+
+        <div class="navbar-custom-menu">
+
+          <ul class="nav navbar-nav">
+            <li class="nav-group">
+              <div class="btn-group">
+                <a class="user-current-context btn btn-primary" href="javascript:void(0)">Общий</a> <button
+                  type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                  <li>
+                    <a class="user-change-context" href="/user/profile/change-context?context=ukr"
+                      data-method="post">Украина</a>
+                  </li>
+                  <li>
+                    <a class="user-change-context" href="/user/profile/change-context?context=uzb"
+                      data-method="post">Узбекистан</a>
+                  </li>
+                  <li>
+                    <a class="user-change-context" href="/user/profile/change-context?context=mda"
+                      data-method="post">Молдова</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="dropdown notifications-menu" id="lisa-notify-dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                <i class="fa fa-clipboard"></i>
+                <span class="label label-info" id="total-notifications-small">2342</span>
+              </a>
+              <ul class="dropdown-menu notifications-dropdown" style="width:auto">
+                <li class="header text-bold">
+                  Количество новых уведомлений: <span id="total-notifications-bold">2342</span> шт.
+                </li>
+                <li class="notifications-container-inner">
+                  <div id="notifications">
+                    <ul class="menu" style="max-height: unset">
+                    </ul>
+                  </div>
+                </li>
+                <li class="footer no-padding">
+                  <a href="/bpm/notification/index" style="float: left;">Просмотреть все</a> <a
+                    href="/bpm/notification/mark-all-as-read" style="float: left;">Пометить прочитанными все</a> <a
+                    href="/bpm/notification-settings/update" style="float: left;">Настройки</a>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown notifications-menu">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                <i class="fa fa-bell-o"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="header text-bold">
+                  Нет новых уведомлений
+                </li>
+                <li>
+                  <ul class="menu"></ul>
+                </li>
+                <li class="footer no-padding"><a href="/user/notification">Просмотреть все</a></li>
+              </ul>
+            </li>
+            <li class="dropdown user user-menu">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <img src="/assets/a7468e58/images/guest.png" class="user-image" alt="User Image" />
+                <span class="hidden-xs">makarenko.al</span>
+              </a>
+
+              <ul class="dropdown-menu">
+                User image -->
+                <!-- <li class="user-header">
+                  <img src="/assets/a7468e58/images/guest.png" class="img-circle" alt="User Image" />
+                  <p>
+                    makarenko.al <small>Участник с 13 февр. 2020 г.</small>
+                  </p>
+                </li>
+                <li class="user-footer">
+                  <div class="pull-left">
+                    <a class="btn btn-default btn-flat" href="/user/profile">Профиль</a>
+                  </div>
+                  <div class="pull-right">
+                    <a class="btn btn-default 
+                                btn-flat" href="/user/auth/logout" data-method="post">Выйти</a>
+                  </div>
+                </li>
+              </ul>
+            </li>
+
+          </ul>
+        </div>
+      </nav>
+    </header> -->
+
+    <!-- <aside class="main-sidebar navbar-default">
+
+      <section class="sidebar">
+
+        <!-- Sidebar user panel -->
+        <!-- <div class="user-panel">
+          <div class="pull-left image">
+            <img src="/assets/a7468e58/images/guest.png" class="img-circle" alt="User Image" />
+          </div>
+          <div class="pull-left info">
+            <p>makarenko.al</p>
+            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          </div>
+        </div>
+        <ul class="sidebar-menu" data-widget="tree">
+          <li class="header"><span><span>Menu Yii2</span></span></li>
+          <li><a href="/gii"><i class="fa fa-file-code-o"></i> <span>Gii</span></a></li>
+          <li><a href="/debug"><i class="fa fa-coffee"></i> <span>Debug</span></a></li>
+          <li class="treeview"><a href="#"><i class="fa fa-plus-square-o"></i> <span>Same tools</span> <span
+                class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+            <ul class='treeview-menu'>
+              <li><a href="/gii"><i class="fa fa-file-code-o"></i> <span>Gii</span></a></li>
+              <li><a href="/debug"><i class="fa fa-coffee"></i> <span>Debug</span></a></li>
+            </ul>
+          </li>
+          <li class="treeview"><a href="javascript:void(0)"><i class="fa fa-cube"></i> <span>Система</span> <span
+                class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+            <ul class='treeview-menu'>
+              <li><a href="/system/module-dispatcher/list-modules-admins"><i class="fa fa-list"></i>
+                  <span>Администраторы модулей</span></a></li>
+            </ul>
+          </li>
+          <li class="treeview"><a href="javascript:void(0)"><i class="fa fa-user-circle-o"></i> <span>GoMer</span> <span
+                class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+            <ul class='treeview-menu'>
+              <li><a href="/gomer/smart-folders/index"><i class="fa fa-search"></i> <span>Конструктор условий</span></a>
+              </li>
+              <li class="treeview"><a href="javascript:void(0);"><i class="fa fa-pie-chart"></i> <span>Отчеты</span>
+                  <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                <ul class='treeview-menu'>
+                  <li><a href="/gomer/reports/managers/index"><i class="fa fa-circle-o"></i> <span>Отчет по
+                        менеджерам</span></a></li>
+                </ul>
+              </li>
+              <li class="treeview"><a href="javascript:void(0);"><i class="fa fa-pie-chart"></i> <span>Управление
+                    товарами</span> <span class="pull-right-container"><i
+                      class="fa fa-angle-left pull-right"></i></span></a>
+                <ul class='treeview-menu'>
+                  <li><a href="/gomer/sellers/one-time-sources/sources/5/16938"><i class="fa fa-circle-o"></i>
+                      <span>Импорт товаров Rozetka</span></a></li>
+                  <li><a href="/gomer/sellers/one-time-sources/sources"><i class="fa fa-circle-o"></i> <span>Обновление
+                        товаров</span></a></li>
+                  <li><a href="/gomer/sellers/items-translate"><i class="fa fa-circle-o"></i> <span>Управление
+                        переводами</span></a></li>
+                  <li><a href="/gomer/sellers/translation-groups/index"><i class="fa fa-circle-o"></i> <span>Заливка
+                        переводов групп</span></a></li>
+                  <li><a href="/gomer/sellers/items-translate/statistics"><i class="fa fa-circle-o"></i>
+                      <span>Статистика переводов</span></a></li>
+                </ul>
+              </li>
+              <li class="treeview"><a href="javascript:void(0);"><i class="fa fa-user-circle-o"></i>
+                  <span>Справочники</span> <span class="pull-right-container"><i
+                      class="fa fa-angle-left pull-right"></i></span></a>
+                <ul class='treeview-menu'>
+                  <li><a href="/gomer/reference/categories/index"><i class="fa fa-circle-o"></i>
+                      <span>Категории</span></a></li>
+                  <li><a href="/gomer/reference/categories-settings/index"><i class="fa fa-circle-o"></i>
+                      <span>Настройки категорий</span></a></li>
+                  <li><a href="/gomer/reference/categories/tree"><i class="fa fa-circle-o"></i> <span>Дерево
+                        категорий</span></a></li>
+                  <li><a href="/gomer/reference/categories/option-settings-tree"><i class="fa fa-circle-o"></i>
+                      <span>Дерево категорий параметра</span></a></li>
+                  <li><a href="/gomer/reference/categories/value-relations-tree"><i class="fa fa-circle-o"></i>
+                      <span>Дерево категорий значения</span></a></li>
+                  <li><a href="/gomer/reference/new-categories/index"><i class="fa fa-circle-o"></i> <span>Цены
+                        категорий</span></a></li>
+                  <li><a href="/gomer/reference/categories-hints"><i class="fa fa-circle-o"></i> <span>Подсказки
+                        привязки категорий</span></a></li>
+                  <li><a href="/gomer/reference/attributes-hints"><i class="fa fa-circle-o"></i> <span>Подсказки
+                        привязки атрибутов</span></a></li>
+                  <li><a href="/gomer/reference/attributes/index"><i class="fa fa-circle-o"></i>
+                      <span>Параметры</span></a></li>
+                  <li><a href="/gomer/reference/producers/index"><i class="fa fa-circle-o"></i>
+                      <span>Производители</span></a></li>
+                  <li><a href="/gomer/reference/series/index"><i class="fa fa-circle-o"></i> <span>Серии</span></a></li>
+                  <li><a href="/gomer/reference/reasons/index?sort=reason"><i class="fa fa-circle-o"></i> <span>Причины
+                        блокировки</span></a></li>
+                  <li><a href="/gomer/reference/alt-categories/index"><i class="fa fa-circle-o"></i> <span>Справочник
+                        категорий прома</span></a></li>
+                  <li><a href="/gomer/reference/alt-category-attributes/index"><i class="fa fa-circle-o"></i>
+                      <span>Справочник атрибутов прома</span></a></li>
+                  <li><a href="/gomer/reference/linkage-anomaly"><i class="fa fa-circle-o"></i> <span>Неправильная
+                        привязка атрибутов</span></a></li>
+                  <li><a href="/gomer/reference/attributes-common"><i class="fa fa-circle-o"></i> <span>Настройка
+                        сквозных параметров</span></a></li>
+                </ul>
+              </li>
+              <li class="treeview"><a href="javascript:void(0);"><i class="fa fa-user-circle-o"></i>
+                  <span>Инструменты</span> <span class="pull-right-container"><i
+                      class="fa fa-angle-left pull-right"></i></span></a>
+                <ul class='treeview-menu'>
+                  <li><a href="/gomer/utils/anomaly-options-values/index"><i class="fa fa-circle-o"></i>
+                      <span>Запутанные значения аттрибутов</span></a></li>
+                </ul>
+              </li>
+              <li><a href="/gomer/sellers"><i class="fa fa-users"></i> <span>Магазины</span></a></li>
+              <li class="treeview"><a href="javascript:void(0);"><i class="fa fa-users"></i> <span>Управление
+                    варусами</span> <span class="pull-right-container"><i
+                      class="fa fa-angle-left pull-right"></i></span></a>
+                <ul class='treeview-menu'>
+                  <li><a href="/gomer/grocery/varus/grocery-varus-shops"><i class="fa fa-circle-o"></i>
+                      <span>Магазины</span></a></li>
+                  <li><a href="/gomer/grocery/varus/grocery-varus-items"><i class="fa fa-circle-o"></i>
+                      <span>Товары</span></a></li>
+                  <li><a href="/gomer/grocery/varus/grocery-varus-shop-items"><i class="fa fa-circle-o"></i>
+                      <span>Товары в магазинах</span></a></li>
+                </ul>
+              </li>
+              <li><a href="/gomer/merchants"><i class="fa fa-users"></i> <span>Мерчанты</span></a></li>
+              <li class="treeview"><a href="javascript:void(0);"><i class="fa fa-users"></i>
+                  <span>Прайс-валидатор</span> <span class="pull-right-container"><i
+                      class="fa fa-angle-left pull-right"></i></span></a>
+                <ul class='treeview-menu'>
+                  <li><a href="/gomer/pricevalidate/xml"><i class="fa fa-circle-o"></i> <span>XML валидатор</span></a>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="/gomer/user-exports"><i class="fa fa-download"></i> <span>Выгрузки</span></a></li>
+              <li class="treeview"><a href="javascript:void(0);"><i class="glyphicon glyphicon-stop"></i>
+                  <span>Стопы</span> <span class="pull-right-container"><i
+                      class="fa fa-angle-left pull-right"></i></span></a>
+                <ul class='treeview-menu'>
+                  <li><a href="/gomer/stop-brands/index"><i class="fa fa-circle-o"></i> <span>Стоп-бренды</span></a>
+                  </li>
+                  <li><a href="/gomer/stop-words/index"><i class="fa fa-circle-o"></i> <span>Стоп-слова</span></a></li>
+                  <li><a href="/gomer/stop-categories/index"><i class="fa fa-circle-o"></i>
+                      <span>Стоп-категории</span></a></li>
+                </ul>
+              </li>
+              <li><a href="/gomer/pictures/common"><i class="glyphicon glyphicon-picture"></i> <span>Загрузка фото и
+                    документов</span></a></li>
+            </ul>
+          </li>
+          <li class="treeview"><a href="javascript:void(0)"><i class="fa fa-user-secret"></i> <span>Flanders
+                (поштучка)</span> <span class="pull-right-container"><i
+                  class="fa fa-angle-left pull-right"></i></span></a>
+            <ul class='treeview-menu'>
+              <li><a href="/goods/list"><i class="fa fa-sitemap"></i> <span>Товары</span></a></li>
+              <li><a href="/goods/producer/list"><i class="fa fa-university"></i> <span>Бренды</span></a></li>
+              <li><a href="/goods/series/list"><i class="fa fa-tags"></i> <span>Серии</span></a></li>
+            </ul>
+          </li>
+          <li class="treeview"><a href="javascript:void(0)"><i class="fa fa-clipboard"></i> <span>Lisa (BPM)</span>
+              <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+            <ul class='treeview-menu'>
+              <li><a href="/bpm/request"><i class="fa fa-file"></i> <span>Заявки</span></a></li>
+              <li><a href="/bpm/export"><i class="fa fa-download"></i> <span>Выгрузки</span></a></li>
+              <li><a href="/bpm/notification"><i class="fa fa-envelope"></i> <span>Нотификации</span></a></li>
+              <li class="treeview"><a href="javascript:void(0);"><i class="glyphicon glyphicon-list"></i> <span>Личные
+                    настройки</span> <span class="pull-right-container"><i
+                      class="fa fa-angle-left pull-right"></i></span></a>
+                <ul class='treeview-menu'>
+                  <li><a href="/bpm/filter"><i class="fa fa-circle-o"></i> <span>Фильтры</span></a></li>
+                  <li><a href="/bpm/notification-settings/update"><i class="fa fa-circle-o"></i> <span>Настройки
+                        нотификаций</span></a></li>
+                  <li><a href="/bpm/request-template/index"><i class="fa fa-circle-o"></i> <span>Шаблоны
+                        задач</span></a></li>
+                </ul>
+              </li>
+              <li class="treeview"><a href="javascript:void(0);"><i class="fa fa-pie-chart"></i> <span>Отчеты</span>
+                  <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                <ul class='treeview-menu'>
+                  <li><a href="/bpm/report/generate"><i class="fa fa-circle-o"></i> <span>Выгрузка</span></a></li>
+                  <li><a href="/bpm/dashboard/common"><i class="fa fa-circle-o"></i> <span>Дашборды</span></a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="treeview"><a href="javascript:void(0)"><i class="fa fa-building"></i> <span>Chief Wiggum (шаблоны)
+              </span> <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+            <ul class='treeview-menu'>
+              <li><a href="/goods_templates/categories"><i class="fa fa-navicon"></i> <span>Шаблоны</span></a></li>
+            </ul>
+          </li>
+          <li class="treeview"><a href="javascript:void(0)"><i class="fa fa-object-group"></i> <span>Grouping</span>
+              <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+            <ul class='treeview-menu'>
+              <li class="treeview"><a href="javascript:void(0);"><i class="fa fa-circle-o"></i> <span>Patty
+                    Bouvier</span> <span class="pull-right-container"><i
+                      class="fa fa-angle-left pull-right"></i></span></a>
+                <ul class='treeview-menu'>
+                  <li class="treeview"><a href="javascript:void(0);"><i class="fa fa-circle"></i> <span>Правила
+                        (Контент)</span> <span class="pull-right-container"><i
+                          class="fa fa-angle-left pull-right"></i></span></a>
+                    <ul class='treeview-menu'>
+                      <li><a href="/grouping/group-rules"><i class="fa fa-circle"></i> <span>Правила
+                            группировки</span></a></li>
+                      <li><a href="/grouping/grouping-results-exports"><i class="fa fa-download fa"></i> <span>Экспорт
+                            результатов</span></a></li>
+                      <li><a href="/grouping/group-tasks"><i class="fa fa-edit"></i> <span>Управление
+                            заданиями</span></a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="treeview"><a href="javascript:void(0);"><i class="fa fa-circle-o"></i> <span>Selma
+                    Bouvier</span> <span class="pull-right-container"><i
+                      class="fa fa-angle-left pull-right"></i></span></a>
+                <ul class='treeview-menu'>
+                  <li><a href="/grouping/selma_bouvier/group-manage"><i class="fa fa-circle-o"></i> <span>Управление
+                        группами</span></a></li>
+                  <li><a href="/grouping/selma_bouvier/group-export"><i class="fa fa-arrow-down"></i> <span>Экспорт
+                        групп</span></a></li>
+                  <li><a href="/grouping/selma_bouvier/group-change"><i class="fa fa-repeat"></i> <span>Обновление
+                        групп</span></a></li>
+                </ul>
+              </li>
+              <li class="treeview"><a href="javascript:void(0);"><i class="fa fa-circle-o"></i> <span>Marge
+                    Bouvier</span> <span class="pull-right-container"><i
+                      class="fa fa-angle-left pull-right"></i></span></a>
+                <ul class='treeview-menu'>
+                  <li><a href="/grouping/marge_bouvier/group-strategy"><i class="fa fa-circle-o"></i> <span>Стратегии
+                        группировки</span></a></li>
+                </ul>
+              </li>
+              <li class="treeview"><a href="javascript:void(0);"><i class="fa fa-align-justify"></i> <span>Логи</span>
+                  <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                <ul class='treeview-menu'>
+                  <li><a href="/grouping/logs/log-user-actions"><i class="fa fa-circle-o"></i> <span>Логи
+                        автогруппировки</span></a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+    </aside> --> 
+
+
+    <div class="content-wrapper">
+      <div class="wait-spinner"></div>
+      <section class="content">
+        <div class="global-breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="/">Главная</a></li>
+            <li><a href="/grouping/marge_bouvier/group-strategy/index">Стратегии группировки</a></li>
+            <li class="active">Стратегия группировки</li>
+          </ul>
+        </div>
+        <h1 class="global-caption">Стратегия группировки</h1>
+        <form id="form-group-strategy" action="/grouping/marge_bouvier/group-strategy/update-strategy?categoryId=80004"
+          method="POST">
+          <input type="hidden" name="_csrf-backend"
+            value="iISHIlTV65FkmG506hdFunFf31gikdSeIrDMmtEIDSnd3sloJKOPwzb2KTulLwn5JQDoFnHO4adE6bzO5UE8Zg==">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="form-group row">
+                <div class="col-md-2">
+                  <span class="panel-label">Категория</span>
+                </div>
+                <div class="col-md-10">
+                  <div class="col-md-12">
+                    <input type="text" class="category-input form-control" value="Ноутбуки (80004)" readOnly> Статус:
+                    <label>Активирована</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="form-group row">
+                <div class="col-md-2">
+                  <span class="panel-label">Продавец</span>
+                </div>
+                <div class="col-md-10">
+                  <div class="col-md-12">
+                    <div class="form-group field-groupstrategyform-seller_type">
+
+                      <input type="hidden" name="GroupStrategyForm[seller_type]" value="">
+                      <div id="groupstrategyform-seller_type" role="radiogroup"><label class="form-check-label"><input
+                            type="radio" class="form-check-input" name="GroupStrategyForm[seller_type]" value="0"
+                            checked> Не установлено</label>
+                        <label class="form-check-label"><input type="radio" class="form-check-input"
+                            name="GroupStrategyForm[seller_type]" value="1"> Маркет+Розетка</label>
+                        <label class="form-check-label"><input type="radio" class="form-check-input"
+                            name="GroupStrategyForm[seller_type]" value="2"> Отдельно</label>
+                      </div>
+
+                      <div class="help-block"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-2">
+                  <span class="panel-label">Комментарий</span>
+                </div>
+                <div class="col-md-10">
+                  <div class="col-md-12">
+                    <div class="form-group field-groupstrategyform-comment">
+
+                      <textarea id="groupstrategyform-comment" class="form-control" name="GroupStrategyForm[comment]"
+                        rows="3"></textarea>
+
+                      <div class="help-block"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="form-group row">
+                <div class="col-md-2">
+                  <span class="panel-label">Вар. параметры</span>                
+                </div>
+                  <div class="col-md-10">
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" name="group_method" disabled>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                          Настроить
+                        </button>
+                    </div>
+                  </div>
+               </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="form-group row">
+                <div class="col-md-2">
+                  <span class="panel-label">Ответственный</span>
+                </div>
+                <div class="col-md-10">
+                  <div class="col-md-6">
+                    <div class="form-group field-rozetka_user_id">
+                      <label class="control-label" for="rozetka_user_id">Розетка</label>
+                      <div class="kv-plugin-loading loading-rozetka_user_id">&nbsp;</div><select id="rozetka_user_id"
+                        class="form-control" name="GroupStrategyForm[rozetka_user_id]"
+                        data-s2-options="s2options_6cc131ae" data-krajee-select2="select2_796997f5"
+                        style="display:none">
+                        <option value="">Не выбран</option>
+                        <option value=""></option>
+                      </select>
+
+                      <div class="help-block"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group field-market_user_id">
+                      <label class="control-label" for="market_user_id">Маркет</label>
+                      <div class="kv-plugin-loading loading-market_user_id">&nbsp;</div><select id="market_user_id"
+                        class="form-control" name="GroupStrategyForm[market_user_id]"
+                        data-s2-options="s2options_6cc131ae" data-krajee-select2="select2_796997f5"
+                        style="display:none">
+                        <option value="">Не выбран</option>
+                        <option value=""></option>
+                      </select>
+
+                      <div class="help-block"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-2">
+                  <span class="panel-label">Статус согласования</span>
+                </div>
+                <div class="col-md-10">
+                  <div class="col-md-6">
+                    <select id="groupstrategyform-approval_status" class="form-control"
+                      name="GroupStrategyForm[approval_status]">
+                      <option value="0">Требует согласования</option>
+                      <option value="1">В процессе согласования</option>
+                      <option value="2">Согласовано</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="form-group row">
+                <div class="col-md-2">
+                  <span class="panel-label">Роялти</span>
+                </div>
+                <div class="col-md-10">
+                  <div class="col-md-6">
+                    <div class="form-group field-groupstrategyform-royalty">
+
+                      <input type="text" id="groupstrategyform-royalty" class="form-control"
+                        name="GroupStrategyForm[royalty]" disabled>
+
+                      <div class="help-block"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-2">
+                  <span class="panel-label">Дата последней группировки</span>
+                </div>
+                <div class="col-md-10">
+                  <div class="col-md-6">
+                    <div class="form-group field-groupstrategyform-last_int_group_date">
+                      <label class="control-label" for="groupstrategyform-last_int_group_date">Внутренний
+                        источник</label>
+                      <input type="text" id="groupstrategyform-last_int_group_date" class="form-control"
+                        name="GroupStrategyForm[last_int_group_date]" autocomplete="off"
+                        data-datetimepicker-source="groupstrategyform-last_int_group_date" data-datetimepicker-type="1"
+                        data-krajee-datetimepicker="datetimepicker_e17dd2e1">
+
+                      <div class="help-block"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group field-groupstrategyform-last_ext_group_date">
+                      <label class="control-label" for="groupstrategyform-last_ext_group_date">Внешний источник</label>
+                      <input type="text" id="groupstrategyform-last_ext_group_date" class="form-control"
+                        name="GroupStrategyForm[last_ext_group_date]" autocomplete="off"
+                        data-datetimepicker-source="groupstrategyform-last_ext_group_date" data-datetimepicker-type="1"
+                        data-krajee-datetimepicker="datetimepicker_e17dd2e1">
+
+                      <div class="help-block"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-2">
+                  <span class="panel-label">Способ группировки</span>
+                </div>
+                <div class="col-md-10">
+                  <div class="col-md-12">
+                    <input type="text" class="form-control" name="group_method" disabled>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="clearfix"></div>
+      </section>
+    </div>
+    <div class="scroll-up"><i class="fa fa-angle-up"></i></div>
+  </div>
+ 
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="param-area">
+            <div class="param-box param-list">
+              <p>Параметры</p>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <label class="form-check-label" for="defaultCheck1">
+              Default checkbox
+            </label>            
+          </div>         
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+            <label class="form-check-label" for="defaultCheck2">
+              Default checkbox
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
+            <label class="form-check-label" for="defaultCheck3">
+              Default checkbox
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
+            <label class="form-check-label" for="defaultCheck4">
+              Default checkbox
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck5">
+            <label class="form-check-label" for="defaultCheck5">
+              Default checkbox
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck6">
+            <label class="form-check-label" for="defaultCheck6">
+              Default checkbox
+            </label>
+          </div>         
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck7" disabled>
+            <label class="form-check-label" for="defaultCheck7">
+              Disabled checkbox
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck8" disabled>
+            <label class="form-check-label" for="defaultCheck8">
+              Disabled checkbox
+            </label>
+          </div>
+          </div>
+          <button type="button" class="btn btn-primary btn-generate">Сгенерировать пары</button>
+          <div class="param-box param-pairs">
+            <p>Пары</p>
+          </div>
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/task-01.js" type="module"></script>
+  <!-- <script src="/assets/1152f699/js/main.js"></script>
+  <script src="/assets/1152f699/js/marge_bouvier/group_strategy/index.js"></script>
+  <script src="/assets/1914945f/yii.validation.js"></script>
+  <script src="/assets/d154d3a4/js/select2.full.min.js"></script>
+  <script src="/assets/d154d3a4/js/i18n/ru.js"></script>
+  <script src="/assets/2f8d1ef4/js/select2-krajee.min.js"></script>
+  <script src="/assets/32a8934b/js/kv-widgets.min.js"></script>
+  <script src="/assets/3a365fdc/js/bootstrap-datetimepicker.min.js"></script>
+  <script src="/assets/3a365fdc/js/locales/bootstrap-datetimepicker.ru.js"></script>
+  <script src="/assets/1914945f/yii.activeForm.js"></script>
+  <script src="/assets/d86ea11d/js/spin.min.js"></script>
+  <script src="/assets/d86ea11d/js/jquery.spin.min.js"></script>
+  <script src="/assets/5aadc146/spl-spinner.js"></script>
+  <script src="/assets/e230305d/user-context.js"></script>
+  <script src="/assets/d86618fa/js/notification.js"></script>
+  <script src="/assets/939cf142/prevent-extra-click.js"></script>
+  <script src="/assets/c74acaae/reminder.js"></script>
+  <script src="/assets/1a3e79c5/js/bootstrap-dialog.min.js"></script>
+  <script src="/assets/1a3e79c5/js/dialog-yii.min.js"></script>
+  <script src="/assets/5ce1c544/scroll-up.js"></script>
+  <script>jQuery(function ($) {
+      jQuery && jQuery.pjax && (jQuery.pjax.defaults.maxCacheLength = 0);
+      if (jQuery('#rozetka_user_id').data('select2')) { jQuery('#rozetka_user_id').select2('destroy'); }
+      jQuery.when(jQuery('#rozetka_user_id').select2(select2_796997f5)).done(initS2Loading('rozetka_user_id', 's2options_6cc131ae'));
+
+      if (jQuery('#market_user_id').data('select2')) { jQuery('#market_user_id').select2('destroy'); }
+      jQuery.when(jQuery('#market_user_id').select2(select2_796997f5)).done(initS2Loading('market_user_id', 's2options_6cc131ae'));
+
+      if (jQuery('#groupstrategyform-last_int_group_date').data('datetimepicker')) { jQuery('#groupstrategyform-last_int_group_date').datetimepicker('destroy'); }
+      jQuery('#groupstrategyform-last_int_group_date').datetimepicker(datetimepicker_e17dd2e1);
+
+      if (jQuery('#groupstrategyform-last_ext_group_date').data('datetimepicker')) { jQuery('#groupstrategyform-last_ext_group_date').datetimepicker('destroy'); }
+      jQuery('#groupstrategyform-last_ext_group_date').datetimepicker(datetimepicker_e17dd2e1);
+
+      jQuery('#form-group-strategy').yiiActiveForm([{ "id": "groupstrategyform-seller_type", "name": "seller_type", "container": ".field-groupstrategyform-seller_type", "input": "#groupstrategyform-seller_type", "validate": function (attribute, value, messages, deferred, $form) { yii.validation.number(value, messages, { "pattern": /^\s*[+-]?\d+\s*$/, "message": "Значение «Продавец» должно быть целым числом.", "skipOnEmpty": 1 }); } }, { "id": "groupstrategyform-comment", "name": "comment", "container": ".field-groupstrategyform-comment", "input": "#groupstrategyform-comment", "validate": function (attribute, value, messages, deferred, $form) { yii.validation.string(value, messages, { "message": "Значение «Комментарий» должно быть строкой.", "max": 250, "tooLong": "Значение «Комментарий» должно содержать максимум 250 символов.", "skipOnEmpty": 1 }); } }, { "id": "groupstrategyform-rozetka_user_id", "name": "rozetka_user_id", "container": ".field-rozetka_user_id", "input": "#rozetka_user_id", "validate": function (attribute, value, messages, deferred, $form) { yii.validation.number(value, messages, { "pattern": /^\s*[+-]?\d+\s*$/, "message": "Значение «Ответственный Розетка» должно быть целым числом.", "skipOnEmpty": 1 }); } }, { "id": "groupstrategyform-market_user_id", "name": "market_user_id", "container": ".field-market_user_id", "input": "#market_user_id", "validate": function (attribute, value, messages, deferred, $form) { yii.validation.number(value, messages, { "pattern": /^\s*[+-]?\d+\s*$/, "message": "Значение «Ответственный Маркет» должно быть целым числом.", "skipOnEmpty": 1 }); } }, { "id": "groupstrategyform-royalty", "name": "royalty", "container": ".field-groupstrategyform-royalty", "input": "#groupstrategyform-royalty", "validate": function (attribute, value, messages, deferred, $form) { yii.validation.number(value, messages, { "pattern": /^\s*[+-]?\d+\s*$/, "message": "Значение «Роялти» должно быть целым числом.", "skipOnEmpty": 1 }); } }], { "scrollToErrorOffset": 50 });
+      initPreventExtraWidget({ "selectors": [".main-header a"] });
+      krajeeYiiConfirm('lteDlg');
+      ScrollUp.init();
+    });</script> -->
+</body>
+
 </html>
