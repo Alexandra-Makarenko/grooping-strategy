@@ -1,40 +1,59 @@
-// const myModal = document.getElementById('myModal')
-// const myInput = document.getElementById('myInput')
+const refs = {
+    paramPairs: document.querySelector('.param-pairs'),
+    paramArea: document.querySelector('.param-box'),
+  generateBtn: document.querySelector('.btn-generate'),
+};
 
-// myModal.addEventListener('shown.bs.modal', () => {
-//   myInput.focus()
-// })
+refs.generateBtn.addEventListener('click', onClick);
+let params = refs.paramArea.textContent;
+    console.log(params)
 
-function printPermutations(array, k) {
-  var combinations = [];
-  var indices = [];
-  function next(index) {
-    if (index == k) {
-      var result = [];
-      for (var i = 0; i < k; i++) {
-        result[i] = array[indices[i]];
-      }
-      combinations.push(result);
-      return;
+function onClick(e) {
+    e.preventDefault();
+    // fetchArticles()
+    
+
+
+    const array = [...params]
+    const k = array.length;
+for (let i = 1; i < k; i++){
+    combinations = combine(array, i)
+   combinations.flatMap(c => {
+         refs.paramPairs.insertAdjacentHTML('beforeend', `<div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="defaultCheck${c}">
+                <label class="form-check-label" for="defaultCheck${c}">
+                  ${c}
+                </label>
+              </div>`); ;
+    }).join("");
+    
+    console.log(combinations);
+    
+        
+}
+           }
+
+
+
+
+
+const combine = (arr, k, withRepetition = false) => {
+  const combinations = []
+  const combination = Array(k)
+  const internalCombine = (start, depth) => {
+    if (depth === k) {
+      combinations.push([...combination])
+      return
     }
-    for (var i = 0; i < array.length; i++) {
-      if (alreadyInCombination(i, index))
-        continue;
-      indices[index] = i;
-      next(index + 1);
+    for (let index = start; index < arr.length; ++index) {
+      combination[depth] = arr[index]
+      internalCombine(index + (withRepetition ? 0 : 1), depth + 1)
     }
   }
-  function alreadyInCombination(i, index) {
-      for (var j = 0; j < index; j++) {
-        if (indices[j] == i) {
-          return true;
-        }
-      }
-      return false;
-  }
-  next(0);
+  internalCombine(0, 0)
   return combinations;
 }
+let combinations = [];
 
 
-console.log(printPermutations([1, 2, 3, 4], 2));
+
