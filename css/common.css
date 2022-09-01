@@ -43,14 +43,11 @@ li{
     outline: 1px solid green;
 }
 @media (min-width: 576px){
-.modal-dialog {
-    max-width: 60%;
+.modal.fade .modal-dialog {
+    max-width: 80%;
   }
 }
 .btn-generate{
   width: 200px;
   height: 60px;
 }
-/* .title{
-  display: block;
-} */
