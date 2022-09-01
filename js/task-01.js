@@ -28,7 +28,10 @@ for (let i = 1; i <= k; i++){
                 <label class="form-check-label" for="defaultCheck${c}">
                   ${c}
                 </label>
-              </div>`); ;
+              </div><div class="form-floating">
+  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+  <label for="floatingTextarea">Comments</label>
+</div>`); ;
     }).join("");
     
     console.log(combinations);
