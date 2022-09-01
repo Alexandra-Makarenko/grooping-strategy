@@ -8,8 +8,6 @@ const refs = {
 
 
 refs.generateBtn.addEventListener('click', onClick);
-// let params = refs.paramArea.textContent;
-//     console.log(params)
 
 function onClick(e) {
     e.preventDefault();
