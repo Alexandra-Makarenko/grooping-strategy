@@ -14,9 +14,9 @@ function onClick(e) {
     
 
 
-    const array = [...params]
+    const array = ['высота', 'размер', 'цвет', 'аналог']
     const k = array.length;
-for (let i = 1; i < k; i++){
+for (let i = 1; i <= k; i++){
     combinations = combine(array, i)
    combinations.flatMap(c => {
          refs.paramPairs.insertAdjacentHTML('beforeend', `<div class="form-check">
