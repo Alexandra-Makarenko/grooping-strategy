@@ -1,20 +1,26 @@
 const refs = {
     paramPairs: document.querySelector('.param-pairs'),
-    paramArea: document.querySelector('.param-box'),
-  generateBtn: document.querySelector('.btn-generate'),
+    paramArea: document.querySelector('.param-list'),
+    generateBtn: document.querySelector('.btn-generate'),
+    paramAreaChecks: document.querySelectorAll('.param-area .form-check-input')
 };
 
+
+
 refs.generateBtn.addEventListener('click', onClick);
-let params = refs.paramArea.textContent;
-    console.log(params)
+// let params = refs.paramArea.textContent;
+//     console.log(params)
 
 function onClick(e) {
     e.preventDefault();
-    // fetchArticles()
-    
-
-
-    const array = ['высота', 'размер', 'цвет', 'аналог']
+    clearArticlesContainer()
+     let array=[];
+      for (let i of refs.paramAreaChecks) {
+        if(i.checked)
+            
+         array.push(i.nextElementSibling.textContent)
+    }  
+      console.log(array);
     const k = array.length;
 for (let i = 1; i <= k; i++){
     combinations = combine(array, i)
@@ -30,11 +36,16 @@ for (let i = 1; i <= k; i++){
     console.log(combinations);
     
         
-}
+    }
+           
+    
+
            }
 
 
-
+function clearArticlesContainer() {
+  refs.paramPairs.innerHTML = '';
+}
 
 
 const combine = (arr, k, withRepetition = false) => {
