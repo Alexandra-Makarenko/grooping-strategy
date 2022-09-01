@@ -2,10 +2,12 @@ const refs = {
     paramPairs: document.querySelector('.param-pairs'),
     paramArea: document.querySelector('.param-list'),
     generateBtn: document.querySelector('.btn-generate'),
-    paramAreaChecks: document.querySelectorAll('.param-area .form-check-input')
+    paramAreaChecks: document.querySelectorAll('.param-area .form-check-input'),
+    paramPairsChecks: document.querySelectorAll('.param-pairs .pairs'),
+    saveBtn: document.querySelector('.btn-save'),
 };
 
-
+    console.log(refs.paramPairsChecks);
 
 refs.generateBtn.addEventListener('click', onClick);
 
@@ -23,23 +25,17 @@ function onClick(e) {
 for (let i = 1; i <= k; i++){
     combinations = combine(array, i)
    combinations.flatMap(c => {
-         refs.paramPairs.insertAdjacentHTML('beforeend', `<div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="defaultCheck${c}">
-                <label class="form-check-label" for="defaultCheck${c}">
-                  ${c}
-                </label>
+         refs.paramPairs.insertAdjacentHTML('beforeend', `<div class = "d-flex pairs"><div class="form-check me-2">
+                <input class="form-check-input pairs" type="checkbox" value="" id="defaultCheck${c}">
+                <label class="form-check-label" for="defaultCheck${c}">${c}</label>
               </div><div class="form-floating">
-  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-  <label for="floatingTextarea">Comments</label>
-</div>`); ;
+  <textarea class="form-control" placeholder="Комментарий" id="floatingTextarea" style="padding:0; height: 25px; width: 200px"></textarea>
+  <label for="floatingTextarea"></label>
+</div></div>`); ;
     }).join("");
     
     console.log(combinations);
-    
-        
-    }
-           
-    
+    }      
 
            }
 
@@ -68,4 +64,11 @@ const combine = (arr, k, withRepetition = false) => {
 let combinations = [];
 
 
+refs.saveBtn.addEventListener('click', onSaveClick);
+
+function onSaveClick(e) {
+    e.preventDefault();
+  
+
+    }
 
