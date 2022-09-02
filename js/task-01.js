@@ -2,8 +2,7 @@ const refs = {
     paramPairs: document.querySelector('.param-pairs'),
     paramArea: document.querySelector('.param-list'),
     generateBtn: document.querySelector('.btn-generate'),
-    paramAreaChecks: document.querySelectorAll('.param-area .form-check-input'),
-    paramPairsChecks: document.querySelectorAll('.input-group mb-3'),
+    paramAreaChecks: document.querySelectorAll('.param-list .form-check-input'),
     saveBtn: document.querySelector('.btn-save'),
     notChoosenCheck: document.querySelector('.not-choosen'),
     togetherCheck: document.querySelector('.form-check-input.together'),
@@ -13,6 +12,7 @@ const refs = {
     paramsDisabledCheck: document.querySelector('.types-check'),
     paramsDisabled: document.querySelector('.input-group-disabled'),
     sellerCheck: document.querySelector('.seller-check input'),
+    paramsIunput: document.querySelector('.params-input'),
 };
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
@@ -26,7 +26,11 @@ refs.paramsDisabledCheck.addEventListener('change', () => {
 
 refs.sellerCheck.addEventListener('change', () => {
     refs.sellerCheck.checked ? refs.generateBtn.setAttribute('disabled', 'disabled') : refs.generateBtn.removeAttribute('disabled');
+    
     clearArticlesContainer();
+    for (let i of refs.paramAreaChecks) {
+        i.checked = false;
+    }
 });
 refs.togetherCheck.addEventListener('change', () => {
      refs.paramsTogether.classList.remove('visually-hidden')
@@ -40,9 +44,8 @@ refs.separetlyCheck.addEventListener('change', () => {
 });
 
      
-function onClick(e) {
-    e.preventDefault();
-   
+function onClick() {
+    
     clearArticlesContainer();
      let array=[];
       for (let i of refs.paramAreaChecks) {
@@ -95,8 +98,11 @@ let combinations = [];
 
 
 
-function onSave(e) {
-
+function onSave() {
+    if (refs.sellerCheck.checked) {
+        refs.paramsIunput.textContent = 'Группируем только по продавцу!'
+        console.log(refs.paramsIunput)
+  }
 }
     
 
