@@ -3,35 +3,65 @@ const refs = {
     paramArea: document.querySelector('.param-list'),
     generateBtn: document.querySelector('.btn-generate'),
     paramAreaChecks: document.querySelectorAll('.param-area .form-check-input'),
-    paramPairsChecks: document.querySelectorAll('.param-pairs .pairs'),
+    paramPairsChecks: document.querySelectorAll('.input-group mb-3'),
     saveBtn: document.querySelector('.btn-save'),
+    notChoosenCheck: document.querySelector('.not-choosen'),
+    togetherCheck: document.querySelector('.form-check-input.together'),
+    separetlyCheck: document.querySelector('.form-check-input.separetly'),
+    paramsSeparetly: document.querySelector('.separetly-params'),
+    paramsTogether: document.querySelector('.together-params'),
+    paramsDisabledCheck: document.querySelector('.types-check'),
+    paramsDisabled: document.querySelector('.input-group-disabled'),
+    sellerCheck: document.querySelector('.seller-check input'),
 };
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
-    console.log(refs.paramPairsChecks);
 
 refs.generateBtn.addEventListener('click', onClick);
+refs.saveBtn.addEventListener('click', onSave);
+refs.paramsDisabledCheck.addEventListener('change', () => {
+     refs.paramsDisabled.classList.toggle('visually-hidden')
+});
 
+refs.sellerCheck.addEventListener('change', () => {
+    refs.sellerCheck.checked ? refs.generateBtn.setAttribute('disabled', 'disabled') : refs.generateBtn.removeAttribute('disabled');
+    clearArticlesContainer();
+});
+refs.togetherCheck.addEventListener('change', () => {
+     refs.paramsTogether.classList.remove('visually-hidden')
+    refs.paramsSeparetly.classList.add('visually-hidden')
+
+});
+refs.separetlyCheck.addEventListener('change', () => {
+     refs.paramsSeparetly.classList.remove('visually-hidden')
+    refs.paramsTogether.classList.add('visually-hidden')
+
+});
+
+     
 function onClick(e) {
     e.preventDefault();
-    clearArticlesContainer()
+   
+    clearArticlesContainer();
      let array=[];
       for (let i of refs.paramAreaChecks) {
         if(i.checked)
             
-         array.push(i.nextElementSibling.textContent)
+            array.push(i.nextSibling.textContent)
     }  
       console.log(array);
     const k = array.length;
 for (let i = 1; i <= k; i++){
     combinations = combine(array, i)
    combinations.flatMap(c => {
-         refs.paramPairs.insertAdjacentHTML('beforeend', `<div class = "d-flex pairs"><div class="form-check me-2">
+         refs.paramPairs.insertAdjacentHTML('beforeend', `<div class = "d-flex pairs"><div class="form-check m-2">
                 <input class="form-check-input pairs" type="checkbox" value="" id="defaultCheck${c}">
                 <label class="form-check-label" for="defaultCheck${c}">${c}</label>
-              </div><div class="form-floating">
-  <textarea class="form-control" placeholder="Комментарий" id="floatingTextarea" style="padding:0; height: 25px; width: 200px"></textarea>
+              </div><div class="form-floating ms-auto">
+  <textarea class="form-control " placeholder="Комментарий" id="floatingTextarea" style="padding:0; height: 25px; width: 200px"></textarea>
   <label for="floatingTextarea"></label>
-</div></div>`); ;
+</div></div>`);
     }).join("");
     
     console.log(combinations);
@@ -64,11 +94,22 @@ const combine = (arr, k, withRepetition = false) => {
 let combinations = [];
 
 
-refs.saveBtn.addEventListener('click', onSaveClick);
 
-function onSaveClick(e) {
-    e.preventDefault();
-  
+function onSave(e) {
 
-    }
+}
+    
 
+
+
+
+
+    // -----------------------another render------------------------------------
+
+/* <div class = "d-flex pairs"><div class="form-check me-2">
+                <input class="form-check-input pairs" type="checkbox" value="" id="defaultCheck${c}">
+                <label class="form-check-label" for="defaultCheck${c}">${c}</label>
+              </div><div class="form-floating">
+  <textarea class="form-control" placeholder="Комментарий" id="floatingTextarea" style="padding:0; height: 25px; width: 200px"></textarea>
+  <label for="floatingTextarea"></label>
+</div></div> */

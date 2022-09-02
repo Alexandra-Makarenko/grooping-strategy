@@ -409,11 +409,11 @@
 
                       <input type="hidden" name="GroupStrategyForm[seller_type]" value="">
                       <div id="groupstrategyform-seller_type" role="radiogroup"><label class="form-check-label"><input
-                            type="radio" class="form-check-input" name="GroupStrategyForm[seller_type]" value="0"
+                            type="radio" class="form-check-input not-choosen" name="GroupStrategyForm[seller_type]" value="0"
                             checked> Не установлено</label>
-                        <label class="form-check-label"><input type="radio" class="form-check-input"
+                        <label class="form-check-label"><input type="radio" class="form-check-input together"
                             name="GroupStrategyForm[seller_type]" value="1"> Маркет+Розетка</label>
-                        <label class="form-check-label"><input type="radio" class="form-check-input"
+                        <label class="form-check-label"><input type="radio" class="form-check-input separetly"
                             name="GroupStrategyForm[seller_type]" value="2"> Отдельно</label>
                       </div>
 
@@ -447,13 +447,29 @@
                   <span class="panel-label">Вар. параметры</span>                
                 </div>
                   <div class="col-md-10">
-                    <div class="col-md-12">
-                      <input type="text" class="form-control" name="group_method" disabled value="(243208) Высота, см;  (21756) Цвет+(131496) Размер (для маркета)">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                          Настроить
+                    <div class="separetly-params d-flex">
+                           <div class="input-group input-group-sm w-50  d-flex">
+                            <span class="input-group-text">Розетка</span>
+                            <textarea class="form-control" aria-label="With textarea" disabled>(243208) Высота, см</textarea>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Настроить
                         </button>
+                        </div>
+                          <div class="input-group input-group-sm w-50  d-flex">
+                            <span class="input-group-text">Маркет</span>
+                            <textarea class="form-control" aria-label="With textarea" disabled>(243208) Высота, см</textarea>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Настроить
+                            </button>
+                          </div>
+                  </div> 
+                    <div class="col-md-12 together-params d-flex visually-hidden">
+                      <input type="text" class="form-control" name="group_method" disabled
+                        value="(243208) Высота, см;  (21756) Цвет+(131496) Размер">
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Настроить
+                      </button>
                     </div>
                   </div>
+                  
                </div>
             </div>
           </div>
@@ -580,7 +596,7 @@
  
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" width="500px">
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Настройка доступных параметров</h5>
@@ -590,58 +606,114 @@
           <div class="param-area d-flex">
              
             <div class="param-box w-40">
-              <p class="title">Параметры</p>
-              <div class="param-list">
-            
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">(243208) Высота, см</label>            
-          </div>         
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-            <label class="form-check-label" for="defaultCheck2">(131496) Размер</label>
+              <div class="title-box d-flex">
+              <p class="title ">Параметры</p>
+              <div class="form-check form-switch ms-auto types-check">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked">
+                <label class="form-check-label" for="flexSwitchCheckChecked">Параметры всех типов</label>
+              </div>
+              </div>
+              <div class="param-list">            
+            <div class="input-group mb-3 " data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="ComboBox">
+            <div class="input-group-text ">
+              <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">(243208) Высота, см</div>
+            <select class="form-select form-select-sm" aria-label="Default select example" for="defaultCheck1">
+              <option value="1" selected>10sm</option>
+              <option value="2">170sm</option>
+              <option value="3">100sm</option>
+            </select>
           </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
-            <label class="form-check-label" for="defaultCheck3">(178701) Аналог</label>
+          <div class="input-group mb-3" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="CheckBoxGroup">
+            <div class="input-group-text">
+              <input class="form-check-input mt-0" type="checkbox" value=""
+                aria-label="Checkbox for following text input">(131496) Размер</div>
+            <select class="form-select form-select-sm" aria-label="Default select example" for="defaultCheck1">
+              <option value="1" selected>S</option>
+              <option value="2">M</option>
+              <option value="3">L</option>
+            </select>
           </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
-            <label class="form-check-label" for="defaultCheck4">(21756) Цвет</label>
+          <div class="input-group mb-3" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="List">
+            <div class="input-group-text">
+              <input class="form-check-input mt-0" type="checkbox" value=""
+                aria-label="Checkbox for following text input">(178701) Аналог</div>
+            <select class="form-select form-select-sm" aria-label="Default select example" for="defaultCheck1">
+              <option value="1" selected>model a</option>
+              <option value="2">model b</option>
+              <option value="3">model c</option>
+            </select>
           </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck5">
-            <label class="form-check-label" for="defaultCheck5">(24158) Вес</label>
+          <div class="input-group mb-3" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="ListValues">
+            <div class="input-group-text">
+              <input class="form-check-input mt-0" type="checkbox" value=""
+                aria-label="Checkbox for following text input">(21756) Цвет</div>
+            <select class="form-select form-select-sm" aria-label="Default select example" for="defaultCheck1">
+              <option value="1" selected>red</option>
+              <option value="2">blue</option>
+              <option value="3">black</option>
+              <option value="4">white</option>
+              <option value="5">blue/yellow</option>
+            </select>
           </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck6">
-            <label class="form-check-label" for="defaultCheck6">(21295) Емкость накопителя</label>
-          </div>         
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck7" disabled>
-            <label class="form-check-label" for="defaultCheck7">(115642) Фасовка</label>
+          <div class="input-group mb-3" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Integer">
+            <div class="input-group-text">
+              <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">(24158) Вес</div>
+            <select class="form-select form-select-sm" aria-label="Default select example" for="defaultCheck1">
+              <option value="1" selected>100-200</option>
+              <option value="2">200-500</option>
+              <option value="3">500-1000</option>
+                </select>
           </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck8" disabled>
-            <label class="form-check-label" for="defaultCheck8">(26310) Цвет</label>
+          <div class="input-group mb-3" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Decimal">
+            <div class="input-group-text">
+              <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">(21295) Емкость накопителя</div>
+            <select class="form-select form-select-sm" aria-label="Default select example" for="defaultCheck1">
+              <option value="1" selected>1000-2000</option>
+              <option value="2">2000-5000</option>
+              <option value="3">5000-10000</option>
+            </select>
           </div>
+          <div class="input-group-disabled visually-hidden">
+            <div class="input-group mb-3" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="TextInput">
+              <div class="input-group-text">
+                <input class="form-check-input mt-0" type="checkbox" value="" disabled aria-label="Checkbox for following text input">(115642) Фасовка</div>
+              <select class="form-select form-select-sm" aria-label="Default select example" for="defaultCheck1">
+                <option value="1" selected>1000-2000</option>
+                <option value="2">2000-5000</option>
+                <option value="3">5000-10000</option>
+              </select>
+            </div>
+            <div class="input-group mb-3" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="TextArea">
+              <div class="input-group-text">
+                <input class="form-check-input mt-0" type="checkbox" value="" disabled
+                  aria-label="Checkbox for following text input">(26310) Цвет</div>
+              <select class="form-select form-select-sm" aria-label="Default select example" for="defaultCheck1">
+                <option value="1" selected>red</option>
+                <option value="2">green</option>
+                <option value="3">blue</option>
+              </select>
+            </div>
           </div>
+           </div>
           </div>
        
             <button type="button" class="btn btn-success btn-generate align-self-start m-5 w-15">Сгенерировать пары</button>
           <div class="param-box w-50">
             <p class="title text-start">Пары</p>
-           <div class="param-pairs">
+           <form class="param-pairs">
            
-              </div>
+              </form>
           </div>
         </div>
         </div>
        
         <div class="modal-footer">
-          
+          <div class="form-check form-switch me-auto seller-check">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked1">
+            <label class="form-check-label" for="flexSwitchCheckChecked1">Группировка по продавцу</label>
+          </div>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary btn-save">Save changes</button>
+          <button type="button" class="btn btn-primary btn-save" data-bs-dismiss="modal">Save changes</button>
         </div>
       </div>
     </div>
