@@ -17,12 +17,7 @@ const refs = {
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
-// if (refs.sellerCheck.checked) {
-//   for (let i of refs.paramAreaChecks) {
-//     console.log(i)
-//         // i.setAttribute('disabled', 'disabled');
-//     }
-// }
+
 refs.generateBtn.addEventListener('click', onClick);
 refs.saveBtn.addEventListener('click', onSave);
 refs.paramsDisabledCheck.addEventListener('change', () => {
