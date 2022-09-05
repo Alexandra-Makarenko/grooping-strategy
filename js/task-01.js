@@ -17,7 +17,12 @@ const refs = {
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
-
+// if (refs.sellerCheck.checked) {
+//   for (let i of refs.paramAreaChecks) {
+//     console.log(i)
+//         // i.setAttribute('disabled', 'disabled');
+//     }
+// }
 refs.generateBtn.addEventListener('click', onClick);
 refs.saveBtn.addEventListener('click', onSave);
 refs.paramsDisabledCheck.addEventListener('change', () => {
@@ -27,10 +32,21 @@ refs.paramsDisabledCheck.addEventListener('change', () => {
 refs.sellerCheck.addEventListener('change', () => {
     refs.sellerCheck.checked ? refs.generateBtn.setAttribute('disabled', 'disabled') : refs.generateBtn.removeAttribute('disabled');
     
-    clearArticlesContainer();
+  clearArticlesContainer();
+  if (refs.sellerCheck.checked) {
     for (let i of refs.paramAreaChecks) {
-        i.checked = false;
+      i.checked = false;
+      i.setAttribute('disabled', 'disabled');
     }
+  } else {
+    for (let i of refs.paramAreaChecks) {
+        i.removeAttribute('disabled');
+      }
+    
+  }
+      
+   
+    
 });
 refs.togetherCheck.addEventListener('change', () => {
      refs.paramsTogether.classList.remove('visually-hidden')
